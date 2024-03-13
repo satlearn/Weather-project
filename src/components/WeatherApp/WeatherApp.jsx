@@ -2,8 +2,8 @@ import './WeatherApp.css'
 import React, { useState } from 'react'
 
 import search_icon from '../Assets/search_system_icon.png'
-import clear_icon from '../Assets/cloud_sun_sunny_weather_icon.png'
-import cloud_icon from '../Assets/hot_sun_weather_icon.png'
+import clear_icon from '../Assets/hot_sun_weather_icon.png'
+import cloud_icon from '../Assets/cloud_sun_sunny_weather_icon.png'
 import cloud_winter from '../Assets/cloud_cold_weather_winter_icon.png'
 import heavy_rain_storm from '../Assets/cloud_heavy rain_rain_weather_icon.png'
 import cloud from '../Assets/cloud_weather_icon.png'
@@ -57,31 +57,45 @@ const WeatherApp = () => {
         }
         console.log(data);
 
-        if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n"){
-            setWicon(clear_icon)
-          }
-        else if(data.weather[0].icon === "02d" || data.weather[0].icon === "02n"){
-            setWicon(cloud_icon)
-          }
-        else if(data.weather[0].icon === "02d" || data.weather[0].icon === "02n"){
-            setWicon(cloud)
-          }
-       
-        else if(data.weather[0].icon === "09d" || data.weather[0].icon === "09n"){
-            setWicon(heavy_rain_storm)
-          }
-        else if(data.weather[0].icon === "10d" || data.weather[0].icon === "10n"){
-            setWicon(heavy_rain_storm)
-          }
-        else if(data.weather[0].icon === "13d" || data.weather[0].icon === "13n"){
-            setWicon(cloud_winter)
-          }
-        else{
-            setWicon(hot_sun)
-          }        
-    };
-
-    
+    //     if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n"){
+    //         setWicon(clear_icon)
+    //       }
+    //     else if(data.weather[0].icon === "02d" || data.weather[0].icon === "02n"){
+    //         setWicon(cloud_icon)
+    //       }
+    //     else if(data.weather[0].icon === "02d" || data.weather[0].icon === "02n"){
+    //         setWicon(cloud)
+    //       }       
+    //     else if(data.weather[0].icon === "09d" || data.weather[0].icon === "09n"){
+    //         setWicon(heavy_rain_storm)
+    //       }
+    //     else if(data.weather[0].icon === "10d" || data.weather[0].icon === "10n"){
+    //         setWicon(heavy_rain_storm)
+    //       }
+    //     else if(data.weather[0].icon === "13d" || data.weather[0].icon === "13n"){          
+    //             setWicon(cloud_winter)
+    //       }
+    //     else{
+    //         setWicon(hot_sun)
+    //       }  
+    if (data.weather && data.weather.length > 0) {
+      const iconCode = data.weather[0].icon;
+      if (iconCode === "01d" || iconCode === "01n") {
+          setWicon(clear_icon);
+      } else if (iconCode === "02d" || iconCode === "02n") {
+          setWicon(cloud_icon);
+      } else if (iconCode === "09d" || iconCode === "09n" || iconCode === "10d" || iconCode === "10n") {
+          setWicon(heavy_rain_storm);
+      } else if (iconCode === "13d" || iconCode === "13n") {
+          setWicon(cloud_winter);
+      } else {
+          setWicon(hot_sun);
+      }
+  } else {
+      console.error("Error: Weather data is missing or invalid.");
+  }
+        
+    };    
     
 
     return (
