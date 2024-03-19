@@ -50,7 +50,8 @@ const WeatherApp = () => {
     
             humidityElement[0].innerHTML = data.main.humidity + " %";
             windElement[0].innerHTML = data.wind.speed + " km/h";
-            temperatureElement[0].innerHTML = data.main.temp + "&deg;C";
+            // temperatureElement[0].innerHTML = data.main.temp.toFixed(2) + "&deg;C";
+            temperatureElement[0].innerHTML = Math.round(data.main.temp) + "&deg;C";
             locationElement[0].innerHTML = data.name;
         } else {
             console.error("Error: Data is missing required properties.");
@@ -95,13 +96,18 @@ const WeatherApp = () => {
       console.error("Error: Weather data is missing or invalid.");
   }
         
-    };    
+    };  
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+          search();
+      }
+  };  
     
 
     return (
     <div className='container'>
         <div className="top-bar">
-            <input type="text" className="cityInput" placeholder='search'/>
+            <input type="text" className="cityInput" placeholder='Search any city name..' onKeyDown={handleKeyDown}/>
             <div className="search-icon" onClick={()=>{search()}}>
                 <img src={search_icon} alt="search-icon" className='search_icon_pic'/>
             </div>

@@ -1,3 +1,6 @@
+body{
+    background-color: black;
+}
 .container{
     width:350px;
     height:450px;
@@ -8,8 +11,9 @@
     border-radius: 10px;
 }
 .search_icon_pic{
-    height:30px;
-    width: 30px;
+    height:27px;
+    width: 27px;
+    /* margin-right: 52px; */
 }
 .top-bar{
     display: flex;
